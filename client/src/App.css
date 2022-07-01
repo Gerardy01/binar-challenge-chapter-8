@@ -4,3 +4,101 @@
 
   box-sizing: border-box;
 }
+
+*:focus {
+  outline: none;
+}
+
+
+
+.container {
+  width: 100vw;
+
+  padding: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchInputHolder {
+  width: 50%;
+  padding: 5px;
+  background-color: rgb(216, 216, 216);
+
+  border-radius: 30px;
+
+  margin-bottom: 2rem;
+}
+.searchInput {
+  width: 100%;
+  height: 2.5rem;
+
+  border: none;
+  padding: 0px 13px;
+
+  border-radius: 30px;
+}
+
+.selectHolder {
+  width: 50%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.selectItem {
+  width: 7rem;
+  height: 2.5rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  border-radius: 30px;
+  
+  background-color: rgb(216, 216, 216);
+  cursor: pointer;
+  font-family: sans-serif;
+
+  transition: 0.4s;
+}
+.selectItem:hover {
+  background-color: rgb(252, 204, 252);
+}
+
+.selectItemActive {
+  width: 7rem;
+  height: 2.5rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  border-radius: 30px;
+  
+  background-color: violet;
+  cursor: pointer;
+  font-family: sans-serif;
+
+  transition: 0.4s;
+}
+
+
+
+
+
+
+
+.playerListHolder {
+  width: 80%;
+
+  list-style: none;
+}
+
+
+
+
