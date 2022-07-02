@@ -86,6 +86,28 @@ function App() {
     setSearchValue('');
     setActiveSelection(value)
   }
+
+  const handleRegister = (e) => {
+    e.preventDefault()
+    
+    const data = []
+    
+    for (let i = 0; i < e.target.length; i++) {
+      if (e.target[i].value == '') return
+      data.push(e.target[i].value);
+    }
+
+    setPlayerData(playerData.concat({
+      name: data[0],
+      email: data[1],
+      experience: 0,
+      level: 1
+    }));
+  }
+
+  useEffect(() => {
+    setShowedPlayer(playerData)
+  }, [playerData])
   
 
 
@@ -114,6 +136,26 @@ function App() {
           )
         })}
       </ul>
+
+      <div className='registerPage'>
+        <h3 style={{fontSize: '2rem', height: '30%'}}>Register new player</h3>
+        
+        <form className='registerForm' onSubmit={(e) => handleRegister(e)}>
+          <div style={{height: '70%', width: '100%'}}>
+            <div className='inputHolder'>
+              <label>Name:</label>
+              <input placeholder='New Name' type='text' style={{width: '60%'}} name='name' />
+            </div>
+            <div className='inputHolder'>
+              <label>Email:</label>
+              <input placeholder='New Email' type='email' style={{width: '60%'}} name='name' />
+            </div>
+          </div>
+          <div style={{height: '10%'}}>
+            <button type='submit' value='btn' className='submitBtn'>Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
