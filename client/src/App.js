@@ -10,7 +10,9 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
   const [showedPlayer, setShowedPlayer] = React.useState([])
 
-  const playerList = [
+  const [playerDataChanged, setPlayerDataChanged] = useState(false);
+
+  const [playerData, setPlayerData] = useState([
     {
       name: "Gerardy",
       email: "gerardy@gmail.com",
@@ -35,22 +37,28 @@ function App() {
       experience: 5000,
       level: 10
     }
-  ]
+  ])
 
-
+  const changePlayerData = (newData) => {
+    setPlayerData(newData);
+    setShowedPlayer(playerData);
+    setTimeout(() => {
+      setPlayerDataChanged(false)
+    }, [300]);
+  }
 
   useEffect(() => {
-    setShowedPlayer(playerList.filter(e => {
+    setShowedPlayer(playerData.filter(e => {
       return e.name
     }))
   }, [])
 
   useEffect(() => {
-    setShowedPlayer(playerList);
+    setShowedPlayer(playerData);
   }, [activeSelection])
 
   const handleSearch = (value) => {
-    setShowedPlayer(playerList.filter(e => {
+    setShowedPlayer(playerData.filter(e => {
       setSearchValue(value)
       if (activeSelection == 1) {
         return e.name.toLocaleLowerCase().includes(value.toLocaleLowerCase());
@@ -93,16 +101,16 @@ function App() {
         <input className='searchInput' placeholder={`Search by ${searchPlaceholderValue} ...`} onChange={e => handleSearch(e.target.value)} value={searchValue} />
       </div>
       <div style={{width: '80%', padding: '0px 13px', marginBottom:5, display:'flex'}}>
-        <h4 style={{width: '20%'}}>Nama</h4>
+        <h4 style={{width: '20%'}}>Name</h4>
         <h4 style={{width: '30%'}}>Email</h4>
         <h4 style={{width: '30%'}}>Experience</h4>
         <h4 style={{width: '10%'}}>Level</h4>
         <div style={{width: '10%'}} />
       </div>
       <ul className='playerListHolder'>
-        {showedPlayer.map((data, key) => {
+        {!playerDataChanged && showedPlayer.map((data, key) => {
           return (
-            <PlayerList data={data} key={key} />
+            <PlayerList data={data} key={key} playerData={playerData} changePlayerData={changePlayerData} setPlayerDataChanged={setPlayerDataChanged} />
           )
         })}
       </ul>
